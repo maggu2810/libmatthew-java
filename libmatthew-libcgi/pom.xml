@@ -8,7 +8,7 @@
     <version>0.8.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>libmatthew-libcgi</artifactId>
+  <artifactId>libcgi-java</artifactId>
   <version>${libmatthew.cgi.version}</version>
   <packaging>so</packaging>
 

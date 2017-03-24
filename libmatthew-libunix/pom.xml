@@ -8,7 +8,7 @@
     <version>0.8.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>libmatthew-libunix</artifactId>
+  <artifactId>libunix-java</artifactId>
   <version>${libmatthew.unix.version}</version>
   <packaging>so</packaging>
 
