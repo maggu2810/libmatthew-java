@@ -1,0 +1,55 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>de.maggu2810.thirdparty.cx.ath.matthew</groupId>
+    <artifactId>libmatthew</artifactId>
+    <version>0.8.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>libmatthew-libcgi</artifactId>
+  <version>${libmatthew.cgi.version}</version>
+  <packaging>so</packaging>
+
+  <dependencies>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>libmatthew-cgi</artifactId>
+      <version>${libmatthew.cgi.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>native-maven-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <javahClassNames>
+            <javahClassName>cx.ath.matthew.cgi.CGI</javahClassName>
+          </javahClassNames>
+          <javahOutputFileName>cgi-java.h</javahOutputFileName>
+          <sources>
+            <source>
+              <directory>src/main/native</directory>
+              <includes>
+                <include>**/*.c</include>
+              </includes>
+            </source>
+          </sources>
+          <!--<jdkIncludePath>/usr/lib/jvm/java-6-sun-1.6.0.22/include/</jdkIncludePath>-->
+          <!--<javahOS>linux</javahOS>-->
+          <compilerStartOptions>
+            <compilerStartOption>-Wall -Os -pedantic -Werror -std=c99 -fpic -fno-stack-protector</compilerStartOption>
+          </compilerStartOptions>
+          <linkerStartOptions>
+            <linkerStartOption>-shared</linkerStartOption>
+          </linkerStartOptions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
