@@ -31,13 +31,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 
 public class testclient {
     public static void main(final String args[]) throws IOException {
         final UnixSocket s = new UnixSocket(new UnixSocketAddress("testsock", true));
         final OutputStream os = s.getOutputStream();
-        final PrintWriter o = new PrintWriter(os);
+        // final PrintWriter o = new PrintWriter(os);
         final BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
         String l;
         while (null != (l = r.readLine())) {
