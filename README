@@ -1,9 +1,9 @@
-libmatthew-java v0.1
+libmatthew-java v0.8
 --------------------
 
 These are a selection of libraries for Java which I have written because they
 are useful and not provided with normal Java. They are available for download
-here and are licensed under the GPL or LGPL. They all come with example
+here and are licensed under the Expat license. They all come with example
 applications using the libraries. 
 
 The ones I consider distribution-worthy are packaged up together. Several other
