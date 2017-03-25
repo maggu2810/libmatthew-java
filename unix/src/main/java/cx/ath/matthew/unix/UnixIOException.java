@@ -33,6 +33,8 @@ import java.io.IOException;
  * An IO Exception which occurred during UNIX Socket IO
  */
 public class UnixIOException extends IOException {
+    private static final long serialVersionUID = 1L;
+
     private final int no;
     private final String message;
 
