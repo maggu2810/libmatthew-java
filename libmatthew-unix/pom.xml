@@ -40,8 +40,6 @@ Import-Package: \
   !*.internal.*,\
   !*.impl.*,\
   cx.ath.matthew.*
-Bundle-NativeCode: \
- lib/linux/x86-64/libunix-java.so;osname=Linux;processor=x86-64
 ]]>
           </bnd>
         </configuration>
