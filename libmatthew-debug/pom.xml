@@ -2,20 +2,30 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>de.maggu2810.thirdparty.cx.ath.matthew</groupId>
-    <artifactId>libmatthew</artifactId>
-    <version>0.8.0-SNAPSHOT</version>
-  </parent>
-
+  <groupId>de.maggu2810.libmatthew</groupId>
   <artifactId>libmatthew-debug</artifactId>
-  <version>${libmatthew.debug.version}</version>
+  <version>1.1.0</version>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>1.5</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+  </properties>
+
+  <licenses>
+    <license>
+      <name>MIT License (Expat)</name>
+      <url>http://opensource.org/licenses/mit-license.php</url>
+    </license>
+  </licenses>
 
   <dependencies>
     <dependency>
-      <groupId>${project.groupId}</groupId>
+      <groupId>de.maggu2810.libmatthew</groupId>
       <artifactId>libmatthew-hexdump</artifactId>
-      <version>${libmatthew.hexdump.version}</version>
+      <version>0.2.0</version>
     </dependency>
   </dependencies>
 
@@ -24,6 +34,7 @@
       <plugin>
         <groupId>biz.aQute.bnd</groupId>
         <artifactId>bnd-maven-plugin</artifactId>
+        <version>3.3.0</version>
         <executions>
           <execution>
             <goals>
@@ -47,6 +58,7 @@ Import-Package: \
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
+        <version>3.0.0</version>
         <configuration>
           <archive>
             <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
