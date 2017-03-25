@@ -36,11 +36,14 @@ public class UnixIOException extends IOException {
     private static final long serialVersionUID = 1L;
 
     private final int no;
-    private final String message;
 
     public UnixIOException(final int no, final String message) {
         super(message);
-        this.message = message;
         this.no = no;
     }
+
+    public int getErrorNumber() {
+        return no;
+    }
+
 }
