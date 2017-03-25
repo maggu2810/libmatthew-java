@@ -3,8 +3,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>de.maggu2810.libmatthew</groupId>
-  <artifactId>libmatthew-debug</artifactId>
-  <version>1.1.0</version>
+  <artifactId>unix</artifactId>
+  <version>0.5.0</version>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -24,8 +24,8 @@
   <dependencies>
     <dependency>
       <groupId>de.maggu2810.libmatthew</groupId>
-      <artifactId>libmatthew-hexdump</artifactId>
-      <version>0.2.0</version>
+      <artifactId>debug</artifactId>
+      <version>1.1.0</version>
     </dependency>
   </dependencies>
 

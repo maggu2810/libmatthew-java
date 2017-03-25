@@ -3,8 +3,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>de.maggu2810.libmatthew</groupId>
-  <artifactId>libunix-java</artifactId>
-  <version>0.5.0</version>
+  <artifactId>libcgi-java</artifactId>
+  <version>0.6.0</version>
   <packaging>so</packaging>
 
   <properties>
@@ -25,8 +25,8 @@
   <dependencies>
     <dependency>
       <groupId>de.maggu2810.libmatthew</groupId>
-      <artifactId>libmatthew-unix</artifactId>
-      <version>0.5.0</version>
+      <artifactId>cgi</artifactId>
+      <version>0.6.0</version>
     </dependency>
   </dependencies>
 
@@ -39,12 +39,9 @@
         <extensions>true</extensions>
         <configuration>
           <javahClassNames>
-            <javahClassName>cx.ath.matthew.unix.UnixServerSocket</javahClassName>
-            <javahClassName>cx.ath.matthew.unix.UnixSocket</javahClassName>
-            <javahClassName>cx.ath.matthew.unix.USInputStream</javahClassName>
-            <javahClassName>cx.ath.matthew.unix.USOutputStream</javahClassName>
+            <javahClassName>cx.ath.matthew.cgi.CGI</javahClassName>
           </javahClassNames>
-          <javahOutputFileName>unix-java.h</javahOutputFileName>
+          <javahOutputFileName>cgi-java.h</javahOutputFileName>
           <sources>
             <source>
               <directory>src/main/native</directory>

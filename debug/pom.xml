@@ -3,8 +3,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>de.maggu2810.libmatthew</groupId>
-  <artifactId>libmatthew-io</artifactId>
-  <version>0.1.0</version>
+  <artifactId>debug</artifactId>
+  <version>1.1.0</version>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -20,6 +20,14 @@
       <url>http://opensource.org/licenses/mit-license.php</url>
     </license>
   </licenses>
+
+  <dependencies>
+    <dependency>
+      <groupId>de.maggu2810.libmatthew</groupId>
+      <artifactId>hexdump</artifactId>
+      <version>0.2.0</version>
+    </dependency>
+  </dependencies>
 
   <build>
     <plugins>

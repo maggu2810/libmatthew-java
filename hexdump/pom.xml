@@ -3,8 +3,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>de.maggu2810.libmatthew</groupId>
-  <artifactId>libmatthew-cgi</artifactId>
-  <version>0.6.0</version>
+  <artifactId>hexdump</artifactId>
+  <version>0.2.0</version>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

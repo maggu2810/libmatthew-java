@@ -20,13 +20,13 @@
   </licenses>
 
   <modules>
-    <module>libmatthew-cgi</module>
-    <module>libmatthew-libcgi</module>
-    <module>libmatthew-debug</module>
-    <module>libmatthew-hexdump</module>
-    <module>libmatthew-io</module>
-    <module>libmatthew-unix</module>
-    <module>libmatthew-libunix</module>
+    <module>cgi</module>
+    <module>libcgi-java</module>
+    <module>debug</module>
+    <module>hexdump</module>
+    <module>io</module>
+    <module>unix</module>
+    <module>libunix-java</module>
   </modules>
 
 </project>
