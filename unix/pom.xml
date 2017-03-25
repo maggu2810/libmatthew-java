@@ -21,14 +21,6 @@
     </license>
   </licenses>
 
-  <dependencies>
-    <dependency>
-      <groupId>de.maggu2810.libmatthew</groupId>
-      <artifactId>debug</artifactId>
-      <version>1.1.0</version>
-    </dependency>
-  </dependencies>
-
   <build>
     <plugins>
       <plugin>

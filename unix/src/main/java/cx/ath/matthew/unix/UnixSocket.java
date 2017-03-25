@@ -31,8 +31,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import cx.ath.matthew.debug.Debug;
-
 /**
  * Represents a UnixSocket.
  */
@@ -85,7 +83,7 @@ public class UnixSocket {
 
     /**
      * Create a socket connected to the given address.
-     * 
+     *
      * @param address The Unix Socket address to connect to
      */
     public UnixSocket(final UnixSocketAddress address) throws IOException {
@@ -94,7 +92,7 @@ public class UnixSocket {
 
     /**
      * Create a socket connected to the given address.
-     * 
+     *
      * @param address The Unix Socket address to connect to
      */
     public UnixSocket(final String address) throws IOException {
@@ -103,7 +101,7 @@ public class UnixSocket {
 
     /**
      * Connect the socket to this address.
-     * 
+     *
      * @param address The Unix Socket address to connect to
      */
     public void connect(final UnixSocketAddress address) throws IOException {
@@ -121,7 +119,7 @@ public class UnixSocket {
 
     /**
      * Connect the socket to this address.
-     * 
+     *
      * @param address The Unix Socket address to connect to
      */
     public void connect(final String address) throws IOException {
@@ -140,9 +138,6 @@ public class UnixSocket {
      * Closes the connection.
      */
     public synchronized void close() throws IOException {
-        if (Debug.debug) {
-            Debug.print(Debug.INFO, "Closing socket");
-        }
         native_close(sock);
         sock = 0;
         this.closed = true;
@@ -153,7 +148,7 @@ public class UnixSocket {
 
     /**
      * Returns an InputStream for reading from the socket.
-     * 
+     *
      * @return An InputStream connected to this socket.
      */
     public InputStream getInputStream() {
@@ -162,7 +157,7 @@ public class UnixSocket {
 
     /**
      * Returns an OutputStream for writing to the socket.
-     * 
+     *
      * @return An OutputStream connected to this socket.
      */
     public OutputStream getOutputStream() {
@@ -172,7 +167,7 @@ public class UnixSocket {
     /**
      * Returns the address this socket is connected to.
      * Returns null if the socket is unconnected.
-     * 
+     *
      * @return The UnixSocketAddress the socket is connected to
      */
     public UnixSocketAddress getAddress() {
@@ -182,7 +177,7 @@ public class UnixSocket {
     /**
      * Send a single byte of data with credentials.
      * (Works on BSDs)
-     * 
+     *
      * @param data The byte of data to send.
      */
     public void sendCredentialByte(final byte data) throws IOException {
@@ -195,7 +190,7 @@ public class UnixSocket {
     /**
      * Receive a single byte of data, with credentials.
      * (Works on BSDs)
-     * 
+     *
      * @see getPeerUID
      * @see getPeerPID
      * @see getPeerGID
@@ -216,7 +211,7 @@ public class UnixSocket {
     /**
      * Get the credential passing status.
      * (only effective on linux)
-     * 
+     *
      * @return The current status of credential passing.
      * @see setPassCred
      */
@@ -229,7 +224,7 @@ public class UnixSocket {
      * Some data must have been received on the socket to do this.
      * Either setPassCred must be called on Linux first, or recvCredentialByte
      * on BSD.
-     * 
+     *
      * @return the UID or -1 if it is not available
      */
     public int getPeerUID() {
@@ -244,7 +239,7 @@ public class UnixSocket {
      * Some data must have been received on the socket to do this.
      * Either setPassCred must be called on Linux first, or recvCredentialByte
      * on BSD.
-     * 
+     *
      * @return the GID or -1 if it is not available
      */
     public int getPeerGID() {
@@ -259,7 +254,7 @@ public class UnixSocket {
      * Some data must have been received on the socket to do this.
      * Either setPassCred must be called on Linux first, or recvCredentialByte
      * on BSD.
-     * 
+     *
      * @return the PID or -1 if it is not available
      */
     public int getPeerPID() {
@@ -273,7 +268,7 @@ public class UnixSocket {
      * Set the credential passing status.
      * (Only does anything on linux, for other OS, you need
      * to use send/recv credentials)
-     * 
+     *
      * @param enable Set to true for credentials to be passed.
      */
     public void setPassCred(final boolean enable) throws IOException {
@@ -283,7 +278,7 @@ public class UnixSocket {
 
     /**
      * Get the blocking mode.
-     * 
+     *
      * @return true if reads are blocking.
      * @see setBlocking
      */
@@ -293,7 +288,7 @@ public class UnixSocket {
 
     /**
      * Set the blocking mode.
-     * 
+     *
      * @param enable Set to false for non-blocking reads.
      */
     public void setBlocking(final boolean enable) {
@@ -305,7 +300,7 @@ public class UnixSocket {
 
     /**
      * Check the socket status.
-     * 
+     *
      * @return true if closed.
      */
     public boolean isClosed() {
@@ -314,7 +309,7 @@ public class UnixSocket {
 
     /**
      * Check the socket status.
-     * 
+     *
      * @return true if connected.
      */
     public boolean isConnected() {
@@ -323,7 +318,7 @@ public class UnixSocket {
 
     /**
      * Check the socket status.
-     * 
+     *
      * @return true if the input stream has been shutdown
      */
     public boolean isInputShutdown() {
@@ -332,7 +327,7 @@ public class UnixSocket {
 
     /**
      * Check the socket status.
-     * 
+     *
      * @return true if the output stream has been shutdown
      */
     public boolean isOutputShutdown() {
