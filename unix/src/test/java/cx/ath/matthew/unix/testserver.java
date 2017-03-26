@@ -31,24 +31,37 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * Test server for {@link UnixSocket}.
+ *
+ * @author Matthew Johnson - Initial contribution and API
+ * @author Markus Rathgeb - Add JavaDoc and fix warnings
+ */
 public class testserver {
+
+    /**
+     * Main function.
+     *
+     * @param args arguments
+     * @throws IOException on error
+     */
     public static void main(final String args[]) throws IOException {
-        final UnixServerSocket ss = new UnixServerSocket(new UnixSocketAddress("testsock", true));
-        final UnixSocket s = ss.accept();
-        final BufferedReader r = new BufferedReader(new InputStreamReader(s.getInputStream()));
-        String l;
-        while (null != (l = r.readLine())) {
-            System.out.println(l);
-            /*
-             * InputStream is = s.getInputStream();
-             * int r;
-             * do {
-             * r = is.read();
-             * System.out.print((char)r);
-             * } while (-1 != r);
-             */
+        try (final UnixServerSocket ss = new UnixServerSocket(new UnixSocketAddress("testsock", true))) {
+            try (final UnixSocket s = ss.accept()) {
+                final BufferedReader r = new BufferedReader(new InputStreamReader(s.getInputStream()));
+                String l;
+                while (null != (l = r.readLine())) {
+                    System.out.println(l);
+                    /*
+                     * InputStream is = s.getInputStream();
+                     * int r;
+                     * do {
+                     * r = is.read();
+                     * System.out.print((char)r);
+                     * } while (-1 != r);
+                     */
+                }
+            }
         }
-        s.close();
-        ss.close();
     }
 }

@@ -31,17 +31,31 @@ import java.io.IOException;
 
 /**
  * An IO Exception which occurred during UNIX Socket IO
+ *
+ * @author Matthew Johnson - Initial contribution and API
+ * @author Markus Rathgeb - Add / fix JavaDoc and fix warnings
  */
 public class UnixIOException extends IOException {
     private static final long serialVersionUID = 1L;
 
     private final int no;
 
+    /**
+     * Create a new Unix I/O Exception.
+     *
+     * @param no the error number
+     * @param message the message
+     */
     public UnixIOException(final int no, final String message) {
         super(message);
         this.no = no;
     }
 
+    /**
+     * Get the error number.
+     *
+     * @return the error number
+     */
     public int getErrorNumber() {
         return no;
     }

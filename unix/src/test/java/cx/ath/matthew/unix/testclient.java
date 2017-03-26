@@ -32,17 +32,31 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 
+/**
+ * Test client for {@link UnixSocket}.
+ *
+ * @author Matthew Johnson - Initial contribution and API
+ * @author Markus Rathgeb - Add JavaDoc and fix warnings
+ * @author Markus Rathgeb - Use try-with-resources
+ */
 public class testclient {
+
+    /**
+     * Main function.
+     *
+     * @param args arguments
+     * @throws IOException on error
+     */
     public static void main(final String args[]) throws IOException {
-        final UnixSocket s = new UnixSocket(new UnixSocketAddress("testsock", true));
-        final OutputStream os = s.getOutputStream();
-        // final PrintWriter o = new PrintWriter(os);
-        final BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
-        String l;
-        while (null != (l = r.readLine())) {
-            final byte[] buf = (l + "\n").getBytes();
-            os.write(buf, 0, buf.length);
+        try (final UnixSocket s = new UnixSocket(new UnixSocketAddress("testsock", true))) {
+            final OutputStream os = s.getOutputStream();
+            // final PrintWriter o = new PrintWriter(os);
+            final BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
+            String l;
+            while (null != (l = r.readLine())) {
+                final byte[] buf = (l + "\n").getBytes();
+                os.write(buf, 0, buf.length);
+            }
         }
-        s.close();
     }
 }

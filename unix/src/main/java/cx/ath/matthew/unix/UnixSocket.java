@@ -27,14 +27,19 @@
 
 package cx.ath.matthew.unix;
 
+import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
  * Represents a UnixSocket.
+ *
+ * @author Matthew Johnson - Initial contribution and API
+ * @author Markus Rathgeb - Add / fix JavaDoc and fix warnings
+ * @author Markus Rathgeb - Use Closeable interface
  */
-public class UnixSocket {
+public class UnixSocket implements Closeable {
     static {
         System.loadLibrary("unix-java");
     }
@@ -85,6 +90,7 @@ public class UnixSocket {
      * Create a socket connected to the given address.
      *
      * @param address The Unix Socket address to connect to
+     * @throws IOException on connect error
      */
     public UnixSocket(final UnixSocketAddress address) throws IOException {
         connect(address);
@@ -94,6 +100,7 @@ public class UnixSocket {
      * Create a socket connected to the given address.
      *
      * @param address The Unix Socket address to connect to
+     * @throws IOException on connect error
      */
     public UnixSocket(final String address) throws IOException {
         this(new UnixSocketAddress(address));
@@ -103,6 +110,7 @@ public class UnixSocket {
      * Connect the socket to this address.
      *
      * @param address The Unix Socket address to connect to
+     * @throws IOException on error
      */
     public void connect(final UnixSocketAddress address) throws IOException {
         if (connected) {
@@ -121,6 +129,7 @@ public class UnixSocket {
      * Connect the socket to this address.
      *
      * @param address The Unix Socket address to connect to
+     * @throws IOException on error
      */
     public void connect(final String address) throws IOException {
         connect(new UnixSocketAddress(address));
@@ -134,9 +143,7 @@ public class UnixSocket {
         }
     }
 
-    /**
-     * Closes the connection.
-     */
+    @Override
     public synchronized void close() throws IOException {
         native_close(sock);
         sock = 0;
@@ -179,6 +186,7 @@ public class UnixSocket {
      * (Works on BSDs)
      *
      * @param data The byte of data to send.
+     * @throws IOException on error
      */
     public void sendCredentialByte(final byte data) throws IOException {
         if (!connected) {
@@ -191,10 +199,12 @@ public class UnixSocket {
      * Receive a single byte of data, with credentials.
      * (Works on BSDs)
      *
-     * @see getPeerUID
-     * @see getPeerPID
-     * @see getPeerGID
-     * @param data The byte of data to send.
+     * @see #getPeerUID()
+     * @see #getPeerPID()
+     * @see #getPeerGID()
+     *
+     * @return the received data
+     * @throws IOException on error
      */
     public byte recvCredentialByte() throws IOException {
         if (!connected) {
@@ -212,8 +222,9 @@ public class UnixSocket {
      * Get the credential passing status.
      * (only effective on linux)
      *
+     * @see #setPassCred(boolean)
+     *
      * @return The current status of credential passing.
-     * @see setPassCred
      */
     public boolean getPassCred() {
         return passcred;
@@ -270,6 +281,7 @@ public class UnixSocket {
      * to use send/recv credentials)
      *
      * @param enable Set to true for credentials to be passed.
+     * @throws IOException on error
      */
     public void setPassCred(final boolean enable) throws IOException {
         native_set_pass_cred(sock, enable);
@@ -280,7 +292,7 @@ public class UnixSocket {
      * Get the blocking mode.
      *
      * @return true if reads are blocking.
-     * @see setBlocking
+     * @see #setBlocking(boolean)
      */
     public boolean getBlocking() {
         return blocking;
@@ -352,6 +364,8 @@ public class UnixSocket {
 
     /**
      * Set timeout of read requests.
+     *
+     * @param timeout the timeout
      */
     public void setSoTimeout(final int timeout) {
         is.setSoTimeout(timeout);

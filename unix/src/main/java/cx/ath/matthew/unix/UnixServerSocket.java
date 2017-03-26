@@ -27,12 +27,17 @@
 
 package cx.ath.matthew.unix;
 
+import java.io.Closeable;
 import java.io.IOException;
 
 /**
  * Represents a listening UNIX Socket.
+ *
+ * @author Matthew Johnson - Initial contribution and API
+ * @author Markus Rathgeb - Add / fix JavaDoc and fix warnings
+ * @author Markus Rathgeb - Use Closeable interface
  */
-public class UnixServerSocket {
+public class UnixServerSocket implements Closeable {
     static {
         System.loadLibrary("unix-java");
     }
@@ -58,6 +63,7 @@ public class UnixServerSocket {
      * Create a server socket bound to the given address.
      *
      * @param address Path to the socket.
+     * @throws IOException on bind error
      */
     public UnixServerSocket(final UnixSocketAddress address) throws IOException {
         bind(address);
@@ -67,6 +73,7 @@ public class UnixServerSocket {
      * Create a server socket bound to the given address.
      *
      * @param address Path to the socket.
+     * @throws IOException on bind error
      */
     public UnixServerSocket(final String address) throws IOException {
         this(new UnixSocketAddress(address));
@@ -76,15 +83,14 @@ public class UnixServerSocket {
      * Accepts a connection on the ServerSocket.
      *
      * @return A UnixSocket connected to the accepted connection.
+     * @throws IOException on error
      */
     public UnixSocket accept() throws IOException {
         final int client_sock = native_accept(sock);
         return new UnixSocket(client_sock, address);
     }
 
-    /**
-     * Closes the ServerSocket.
-     */
+    @Override
     public synchronized void close() throws IOException {
         native_close(sock);
         sock = 0;
@@ -96,6 +102,7 @@ public class UnixServerSocket {
      * Binds a server socket to the given address.
      *
      * @param address Path to the socket.
+     * @throws IOException on error
      */
     public void bind(final UnixSocketAddress address) throws IOException {
         if (bound) {
@@ -111,6 +118,7 @@ public class UnixServerSocket {
      * Binds a server socket to the given address.
      *
      * @param address Path to the socket.
+     * @throws IOException on error
      */
     public void bind(final String address) throws IOException {
         bind(new UnixSocketAddress(address));

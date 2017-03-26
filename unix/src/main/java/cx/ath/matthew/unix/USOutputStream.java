@@ -30,6 +30,12 @@ package cx.ath.matthew.unix;
 import java.io.IOException;
 import java.io.OutputStream;
 
+/**
+ * An output stream for an unix socket.
+ *
+ * @author Matthew Johnson - Initial contribution and API
+ * @author Markus Rathgeb - Add JavaDoc and fix warnings
+ */
 public class USOutputStream extends OutputStream {
     private native int native_send(int sock, byte[] b, int off, int len) throws IOException;
 
@@ -40,6 +46,12 @@ public class USOutputStream extends OutputStream {
     private final byte[] onebuf = new byte[1];
     private final UnixSocket us;
 
+    /**
+     * Create a new output stream for an unit socket.
+     *
+     * @param sock the socket number
+     * @param us the unix socket to use
+     */
     public USOutputStream(final int sock, final UnixSocket us) {
         this.sock = sock;
         this.us = us;
@@ -55,6 +67,13 @@ public class USOutputStream extends OutputStream {
     public void flush() {
     } // no-op, we do not buffer
 
+    /**
+     * Write the given array of byte arrays.
+     *
+     * @param b the data
+     * @throws IOException if an I/O error occurs
+     * @throws NotConnectedException if the output stream has been closed
+     */
     public void write(final byte[][] b) throws IOException {
         if (closed) {
             throw new NotConnectedException();
@@ -79,10 +98,20 @@ public class USOutputStream extends OutputStream {
         write(onebuf);
     }
 
+    /**
+     * Check if the output stream is closed.
+     *
+     * @return true if closed, otherwise false
+     */
     public boolean isClosed() {
         return closed;
     }
 
+    /**
+     * Get the unix socket used by this output stream.
+     *
+     * @return the unix socket
+     */
     public UnixSocket getSocket() {
         return us;
     }

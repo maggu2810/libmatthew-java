@@ -29,6 +29,9 @@ package cx.ath.matthew.unix;
 
 /**
  * Represents an address for a Unix Socket
+ *
+ * @author Matthew Johnson - Initial contribution and API
+ * @author Markus Rathgeb - Add / fix JavaDoc and fix warnings
  */
 public class UnixSocketAddress {
     String path;
@@ -57,6 +60,8 @@ public class UnixSocketAddress {
 
     /**
      * Return the path.
+     * 
+     * @return the path
      */
     public String getPath() {
         return path;
@@ -64,6 +69,8 @@ public class UnixSocketAddress {
 
     /**
      * Returns true if this an address for an abstract socket.
+     * 
+     * @return true is abstract otherwise false
      */
     public boolean isAbstract() {
         return abs;

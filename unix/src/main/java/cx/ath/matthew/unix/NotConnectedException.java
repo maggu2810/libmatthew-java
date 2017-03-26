@@ -29,9 +29,18 @@ package cx.ath.matthew.unix;
 
 import java.net.SocketException;
 
+/**
+ * Representation for a not connection exception.
+ *
+ * @author Matthew Johnson - Initial contribution and API
+ * @author Markus Rathgeb - Add JavaDoc and fix warnings
+ */
 public class NotConnectedException extends SocketException {
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Create a new not connected exception.
+     */
     public NotConnectedException() {
         super("The Socket is Not Connected");
     }

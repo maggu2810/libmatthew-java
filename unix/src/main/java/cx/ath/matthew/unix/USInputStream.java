@@ -30,7 +30,16 @@ package cx.ath.matthew.unix;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * An input stream for an unix socket.
+ *
+ * @author Matthew Johnson - Initial contribution and API
+ * @author Markus Rathgeb - Add JavaDoc and fix warnings
+ */
 public class USInputStream extends InputStream {
+    /**
+     * The don't wait for message (non-blocking) code .
+     */
     public static final int MSG_DONTWAIT = 0x40;
 
     private native int native_recv(int sock, byte[] b, int off, int len, int flags, int timeout) throws IOException;
@@ -43,6 +52,12 @@ public class USInputStream extends InputStream {
     private int flags = 0;
     private int timeout = 0;
 
+    /**
+     * Create a new input stream for an unix socket.
+     *
+     * @param sock the socket number
+     * @param us the unix socket
+     */
     public USInputStream(final int sock, final UnixSocket us) {
         this.sock = sock;
         this.us = us;
@@ -92,18 +107,38 @@ public class USInputStream extends InputStream {
         }
     }
 
+    /**
+     * Check if the output stream is closed.
+     *
+     * @return true if closed, otherwise false
+     */
     public boolean isClosed() {
         return closed;
     }
 
+    /**
+     * Get the unix socket used by this output stream.
+     *
+     * @return the unix socket
+     */
     public UnixSocket getSocket() {
         return us;
     }
 
+    /**
+     * Enable / disable blocking mode.
+     *
+     * @param enable flag if the blocking mode should be used, false if non-blocking mode should be used
+     */
     public void setBlocking(final boolean enable) {
         flags = enable ? 0 : MSG_DONTWAIT;
     }
 
+    /**
+     * Set timeout of read requests.
+     *
+     * @param timeout the timeout
+     */
     public void setSoTimeout(final int timeout) {
         this.timeout = timeout;
     }
