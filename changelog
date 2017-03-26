@@ -1,3 +1,9 @@
+Below you found the original changelog of the libmatthew-java bundle.
+We do not continue the one distribution package anymore, but handle the
+artifacts separately.
+
+=== Original changelog of libmatthew-java ===
+
 Version 0.8:
 
 	* Change to expat licence 
