@@ -37,11 +37,20 @@
       <id>bintray</id>
       <url>https://api.bintray.com/maven/maggu2810/maven/libmatthew-java</url>
     </repository>
-    <!--<snapshotRepository>-->
-    <!--<id>bintray</id>-->
-    <!--<url>https://oss.jfrog.org/artifactory/simple/oss-snapshot-local/</url>-->
-    <!--</snapshotRepository>-->
+    <!--<snapshotRepository> -->
+    <!--<id>bintray</id> -->
+    <!--<url>https://oss.jfrog.org/artifactory/simple/oss-snapshot-local/</url> -->
+    <!--</snapshotRepository> -->
   </distributionManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 
   <build>
     <plugins>
@@ -91,9 +100,6 @@ Import-Package: \
       <plugin>
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>2.10.4</version>
-        <configuration>
-          <failOnError>false</failOnError>
-        </configuration>
       </plugin>
       <plugin>
         <artifactId>maven-release-plugin</artifactId>
